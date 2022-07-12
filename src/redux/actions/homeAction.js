@@ -1,46 +1,43 @@
 import * as types from "../actionType";
-import { Post } from "../../services/api.service";
-export const recommended = (path, type) => {
-  var data = {
-    page: 1,
-    limit: 10
-  };
-
+import database from "@react-native-firebase/database";
+export const getUsers = () => {
   return (dispatch) => {
     try {
-      dispatch(recommandedInit());
-      Post("RECOMMENDED" + path, data).then(
-        (result) => {
-          if (type === "recommended") {
-            dispatch(recommandedSuccess(result));
-          } else {
-            dispatch(recentlyPlayedSuccess(result));
-          }
-        },
-        (e) => {
-          console.log(e);
-        }
-      );
+      dispatch(userInit());
+      database()
+        .ref("/user")
+        .once("value")
+        .then((snapshot) => {
+          dispatch(userSuccess(snapshot.val()));
+        });
+    } catch (error) {
+      dispatch(userInit());
+    }
+  };
+};
+
+export const getCategories = () => {
+  return (dispatch) => {
+    try {
+      database()
+        .ref("/categories")
+        .once("value")
+        .then((snapshot) => {
+          dispatch(setCategories(snapshot.val()));
+        });
     } catch (error) {
       console.log(error);
     }
   };
 };
-export const recommandedInit = (data) => {
-  return { type: types.HOME_DATA, data };
+
+export const userInit = (data) => {
+  return { type: types.USER_DATA, data };
 };
-export const recommandedSuccess = (data) => {
-  return { type: types.HOME_DATA_SUCCESS, data };
+export const userSuccess = (data) => {
+  return { type: types.USER_DATA_SUCCESS, data };
 };
-export const recentlyPlayedSuccess = (data) => {
-  return { type: types.RECENTLY_PLAYED_DATA_SUCCESS, data };
-};
-export const recentlyPlayedFail = (data) => {
-  return { type: types.RECENTLY_PLAYED_DATA_FAIL, data };
-};
-export const recommandedFail = () => {
-  return { type: types.HOME_DATA_FAIL };
-};
-export const recommandedClear = (data) => {
-  return { type: types.HOME_DATA_CLEAR, data };
+
+export const setCategories = (data) => {
+  return { type: types.CATEGORIE_DATA_SUCCESS, data };
 };

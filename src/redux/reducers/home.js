@@ -1,34 +1,28 @@
 import * as types from "../actionType";
 
 const initialSettings = {
-  data: [],
+  userList: [],
+  categoriesList: [],
   loading: true,
   error: null
 };
 const homeReducer = (state = initialSettings, action) => {
   switch (action.type) {
-    case types.HOME_DATA:
+    case types.USER_DATA:
       return {
         ...state,
         loading: true
       };
-    case types.HOME_DATA_SUCCESS:
+    case types.USER_DATA_SUCCESS:
       return {
         ...state,
-        data: action.data,
+        userList: action.data,
         loading: false
       };
-    case types.HOME_DATA_FAIL:
+    case types.CATEGORIE_DATA_SUCCESS:
       return {
         ...state,
-        data: [],
-        loading: false
-      };
-    case types.HOME_DATA_CLEAR:
-      return {
-        ...state,
-        data: [],
-        loading: false
+        categoriesList: action.data
       };
   }
   return state;

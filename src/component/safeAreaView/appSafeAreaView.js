@@ -34,8 +34,7 @@ const AppSafeAreaView = ({
     return (
       <View style={styles.container}>
         <StatusBar
-          barStyle={theme == "light" ? "light-content" : "dark-content"}
-          translucent={theme != "light"}
+          barStyle={theme != "light" ? "light-content" : "dark-content"}
           hidden={false}
           backgroundColor={theme != "light" ? "transparent" : Colors.white}
         />

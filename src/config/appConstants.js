@@ -10,17 +10,13 @@ import {
 } from "react-native-responsive-screen";
 
 const Constants = {
-  API_BASE_URL: "",
-  API_BASE_URL_LOCAL: "",
-  REQUEST_TIMEOUT: 20000 * 1,
   animation_from_right: "slide_from_right",
   animation_from_left: "slide_from_left",
   animation_from_bottom: "slide_from_bottom",
   animation_default: "default",
   animation_none: "none",
   animation_fade: "fade",
-  animation_flip: "flip",
-  dateFormate: "MMMM Do YYYY"
+  animation_flip: "flip"
 };
 
 const Colors = {
@@ -31,14 +27,13 @@ const Colors = {
   red: "#dc3545",
   errorColor: "#B52222",
   yellow: "rgba(239, 192, 48, 0.8)",
-  lightBlack: "rgba(0, 0, 0, 0.7)",
   btnColor: "#EFC030",
   gray: "gray",
   tabGray: "#999999",
   shadowColor: "#F3F6F6",
-  audioDetailBorder: "rgba(0, 0, 0, 0.2)",
+  cardLight: "rgba(0, 0, 0, 0.2)",
   alertbackgrouend: "rgba(0, 0, 0, 0.5)",
-  lightWhite: "rgba(255, 255, 255, 0.5)"
+  searchbarBg: "#F1F2F4"
 };
 
 const Dimens = {
@@ -70,55 +65,16 @@ const Screen = {
   OrientationListener: removeOrientationListener
 };
 
-const Fonts = {
-  OpenBold: "OpenSans-Bold",
-  OpenLight: "OpenSans-Light",
-  OpenMedium: "OpenSans-Medium",
-  OpenRegular: "OpenSans-Regular",
-  OpenSemiBold: "OpenSans-SemiBold"
+const Images = {
+  close: require("../assets/close.png"),
+  check: require("../assets/check.png"),
+  filter: require("../assets/filter.png"),
+  search: require("../assets/search.png")
 };
 
-const ImageView = {
-  logo: require("../assets/logo.png"),
-  bg: require("../assets/bg.png"),
-  home: require("../assets/home.png"),
-  back: require("../assets/back.png"),
-  media: require("../assets/media.png"),
-  profile: require("../assets/profile.png"),
-  programm: require("../assets/programm.png"),
-  homeActive: require("../assets/homeActive.png"),
-  mediaActive: require("../assets/mediaActive.png"),
-  profileActive: require("../assets/profileActive.png"),
-  programmActive: require("../assets/programmActive.png"),
-  AbroadLogo: require("../assets/abroad-Logo.png"),
-  appLogo: require("../assets/appLogo.png"),
-  pwdv: require("../assets/pwdv.png"),
-  setting: require("../assets/setting.png"),
-  eye: require("../assets/eye.png"),
-  backBlack: require("../assets/backBlack.png"),
-  download: require("../assets/download.png"),
-  download1: require("../assets/downloadA.png"),
-  like: require("../assets/like.png"),
-  unLike: require("../assets/unLike.png"),
-  completed: require("../assets/completed.png"),
-  play: require("../assets/play.png"),
-  nots: require("../assets/nots.png"),
-  info: require("../assets/info.png"),
-  audioplay: require("../assets/audioplay.png"),
-  push: require("../assets/push.png"),
-  next: require("../assets/next.png"),
-  privious: require("../assets/privious.png"),
-  next15: require("../assets/15next.png"),
-  privious15: require("../assets/15privious.png"),
-  playBlack: require("../assets/playBlack.png"),
-  opennots: require("../assets/openJurnal.png"),
-  changeJurnal: require("../assets/changeJurnal.png"),
-  activeinfo: require("../assets/openDiscription.png"),
-  playSmall: require("../assets/playSmall.png"),
-  sessionActive: require("../assets/sessionActive.png"),
-  session: require("../assets/session.png"),
-  righteBack: require("../assets/righteBack.png")
-};
+const Fonts = {};
+
+const ImageView = {};
 
 const Strings = {
   app_Name: "COCO",
@@ -126,4 +82,16 @@ const Strings = {
   home: "HOME"
 };
 
-export { Constants, Colors, Dimens, Screen, Fonts, ImageView, Strings };
+const emptyArray = [{ id: "1" }, { id: "2" }, { id: "3" }, { id: "4" }];
+
+export {
+  Constants,
+  Colors,
+  Dimens,
+  Screen,
+  Fonts,
+  ImageView,
+  Strings,
+  Images,
+  emptyArray
+};

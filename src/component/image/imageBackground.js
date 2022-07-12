@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Animated, View, StyleSheet, Image } from "react-native";
-import SkeletonContent from "../skeletonContent";
 import c from "../../styles/commonStyle";
 class ImageBackground extends Component {
   thumbnailAnimated = new Animated.Value(0);
@@ -40,11 +39,6 @@ class ImageBackground extends Component {
 
     return (
       <View style={style} ref={this._captureRef}>
-        <SkeletonContent
-          containerStyle={c.centerFlex}
-          isLoading={isLoading ? isLoading : false}
-          layout={skeletonLayout}
-        >
           <View
             style={[{
               flex: 1,
@@ -81,7 +75,6 @@ class ImageBackground extends Component {
               onLoad={this.onImageLoad}
             />
           </View>
-        </SkeletonContent>
         {children}
       </View>
     );
