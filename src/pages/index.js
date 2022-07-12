@@ -9,19 +9,18 @@ import { getUsers, getCategories } from "../redux/actions/homeAction";
 const Home = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [selected, setSelected] = useState([]);
-  const dispatch = useDispatch();
   const userList = useSelector(uData);
   const categories = useSelector(cList);
   const isLoading = useSelector(loading);
-  const getUser = () => dispatch(getUsers());
-  const getCategorie = () => dispatch(getCategories());
+  const dispatch = useDispatch();
   useEffect(() => {
-    getUser();
-    getCategorie();
+    dispatch(getUsers({}));
+    dispatch(getCategories({}));
   }, []);
 
   return (
     <AppRoot>
+      {console.log('userList', userList)}
       <Searchbar onChangeText={() => {}} onPress={() => setShowFilter(true)} />
       <FlatList
         data={userList}

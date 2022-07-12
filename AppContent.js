@@ -9,11 +9,11 @@ import configureStore from "./src/redux/configureStore";
 function ReduxApp() {
   const Store = configureStore();
   return (
-    <SafeAreaProvider>
-      <Provider store={Store}>
+    <Provider store={Store}>
+      <SafeAreaProvider>
         <App />
-      </Provider>
-    </SafeAreaProvider>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
 export default React.memo(ReduxApp);
