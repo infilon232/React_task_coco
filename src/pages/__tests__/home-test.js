@@ -1,11 +1,17 @@
-import React from "react";
-import { FlatList, Text } from "react-native";
-import renderer from "react-test-renderer";
-import Home from "../index";
-import { Provider } from "react-redux";
-import configureStore from "redux-mock-store";
-import { act, waitFor } from "@testing-library/react-native";
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/**
+ * @format
+ */
 
+import { act, waitFor } from "@testing-library/react-native";
+import React from "react";
+import "react-native";
+import { FlatList, Text } from "react-native";
+import { Provider } from "react-redux";
+import renderer from "react-test-renderer";
+import Home from "../";
+import configureStore from "../../redux/configureStore";
 jest.mock("@react-navigation/native", () => {
   return {
     useFocusEffect: (callback) => callback(),
@@ -13,29 +19,25 @@ jest.mock("@react-navigation/native", () => {
   };
 });
 
-const initialState = {
-  categories: { name: "sports", id: "1" },
-  id: "1",
-  name: "sam",
-  profile: "https://picsum.photos/id/1000/224/224"
-};
-
-const mockStore = configureStore();
-const store = mockStore(initialState);
 describe("Home", () => {
   const fakeNavigation = {
     navigate: jest.fn(),
     goBack: jest.fn()
   };
-  jest.useFakeTimers();
 
+  const route = {
+    params: {
+      token: "token"
+    }
+  };
+  const store = configureStore();
   it("should render correctly", () => {
     let rendered;
     act(() => {
-      rendered = renderer
+      renderer
         .create(
           <Provider store={store}>
-            <Home navigation={fakeNavigation} />
+            <Home navigation={fakeNavigation} route={route} />
           </Provider>
         )
         .toJSON();

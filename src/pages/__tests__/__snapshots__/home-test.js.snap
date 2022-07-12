@@ -54,6 +54,8 @@ exports[`Home renders the FlatList component 1`] = `
 </RCTScrollView>
 `;
 
+exports[`Home should render correctly 1`] = `undefined`;
+
 exports[`renders correctly 1`] = `
 Array [
   <RCTSafeAreaView

@@ -1,0 +1,66 @@
+
+> coco@0.0.1 test
+> jest "--coverage" "--watchAll=false"
+
+  console.log
+    userList undefined
+
+      at Component (src/pages/index.js:23:16)
+
+  console.error
+    The above error occurred in the <Home> component:
+    
+        at fn (/Users/infi/Desktop/React-Native/Demo/React_task_coco/coco new/src/pages/index.js:10:39)
+        at fn (/Users/infi/Desktop/React-Native/Demo/React_task_coco/coco new/node_modules/react-redux/lib/components/Provider.js:19:3)
+    
+    Consider adding an error boundary to your tree to customize error handling behavior.
+    Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+      at logCapturedError (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8409:7)
+      at call (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8442:5)
+      at callCallback (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3811:12)
+      at commitUpdateQueue (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:3832:9)
+      at commitLayoutEffectOnFiber (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:12650:13)
+      at commitLayoutMountEffects_complete (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13728:9)
+      at commitLayoutEffects_begin (node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13714:7)
+
+------------------------|---------|----------|---------|---------|---------------------
+File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s   
+------------------------|---------|----------|---------|---------|---------------------
+All files               |   55.08 |    10.34 |   26.82 |   53.91 |                     
+ assets                 |     100 |      100 |     100 |     100 |                     
+  check.png             |     100 |      100 |     100 |     100 |                     
+  close.png             |     100 |      100 |     100 |     100 |                     
+  filter.png            |     100 |      100 |     100 |     100 |                     
+  search.png            |     100 |      100 |     100 |     100 |                     
+ component              |       0 |        0 |       0 |       0 |                     
+  index.js              |       0 |        0 |       0 |       0 |                     
+ component/button       |      50 |        0 |       0 |      50 |                     
+  button.js             |      50 |        0 |       0 |      50 | 38-47               
+ component/image        |       0 |        0 |       0 |       0 |                     
+  image.js              |       0 |        0 |       0 |       0 | 5-7                 
+  imageBackground.js    |       0 |        0 |       0 |       0 | 5-40                
+ component/input        |     100 |      100 |     100 |     100 |                     
+  searchbar.js          |     100 |      100 |     100 |     100 |                     
+ component/modal        |    42.1 |        0 |   14.28 |    42.1 |                     
+  multiSelect.js        |    42.1 |        0 |   14.28 |    42.1 | 19-27,63-81         
+ component/safeAreaView |   88.88 |       50 |     100 |   88.88 |                     
+  appRoot.js            |     100 |      100 |     100 |     100 |                     
+  appSafeAreaView.js    |   85.71 |       50 |     100 |   85.71 | 65                  
+ component/text         |       0 |        0 |       0 |       0 |                     
+  textView.js           |       0 |        0 |       0 |       0 | 5-6                 
+ config                 |     100 |      100 |     100 |     100 |                     
+  appConstants.js       |     100 |      100 |     100 |     100 |                     
+ list                   |   28.57 |        0 |       0 |   28.57 |                     
+  userList.js           |   28.57 |        0 |       0 |   28.57 | 33-39               
+ pages                  |   58.82 |        0 |   22.22 |   58.82 |                     
+  index.js              |   58.82 |        0 |   22.22 |   58.82 | 18,24-56            
+ redux                  |     100 |      100 |     100 |     100 |                     
+  actionType.js         |     100 |      100 |     100 |     100 |                     
+ redux/actions          |   31.57 |      100 |   11.11 |   31.57 |                     
+  homeAction.js         |   31.57 |      100 |   11.11 |   31.57 | 5-14,20-29,35,38,42 
+ redux/selectors        |     100 |      100 |     100 |     100 |                     
+  homeSelectors.js      |     100 |      100 |     100 |     100 |                     
+ styles                 |     100 |      100 |     100 |     100 |                     
+  commonStyle.js        |     100 |      100 |     100 |     100 |                     
+------------------------|---------|----------|---------|---------|---------------------

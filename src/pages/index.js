@@ -20,8 +20,7 @@ const Home = () => {
 
   return (
     <AppRoot>
-      {console.log('userList', userList)}
-      <Searchbar onChangeText={() => {}} onPress={() => setShowFilter(true)} />
+      <Searchbar onPress={() => setShowFilter(true)} />
       <FlatList
         data={userList}
         showsVerticalScrollIndicator={false}
