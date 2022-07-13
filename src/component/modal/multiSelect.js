@@ -4,11 +4,6 @@ import PropTypes from "prop-types";
 import { Text, Button } from "../../component";
 import { Colors, Images, Screen } from "../../config/appConstants";
 import c from "../../styles/commonStyle";
-
-const pageStyle = StyleSheet.create({
-
-});
-
 class MultiSelect extends Component {
 
   state = {
@@ -91,10 +86,6 @@ MultiSelect.propTypes = {
   data: PropTypes.array,
   onHide: PropTypes.func,
   onApply: PropTypes.func
-};
-
-MultiSelect.defaultProps = {
-  containerStyle: pageStyle.containerStyle
 };
 
 export default MultiSelect;

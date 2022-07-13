@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1657635091941" clover="3.2.0">
-  <project timestamp="1657635091941" name="All files">
-    <metrics statements="125" coveredstatements="80" conditionals="62" coveredconditionals="8" methods="42" coveredmethods="17" elements="229" coveredelements="105" complexity="0" loc="125" ncloc="125" packages="16" files="23" classes="23"/>
+<coverage generated="1657688340456" clover="3.2.0">
+  <project timestamp="1657688340456" name="All files">
+    <metrics statements="123" coveredstatements="78" conditionals="62" coveredconditionals="8" methods="42" coveredmethods="17" elements="227" coveredelements="103" complexity="0" loc="123" ncloc="123" packages="16" files="23" classes="23"/>
     <package name="assets">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="check.png" path="/Users/infi/Desktop/React-Native/Demo/React_task_coco/coco new/src/assets/check.png">
@@ -48,15 +48,15 @@
       </file>
       <file name="imageBackground.js" path="/Users/infi/Desktop/React-Native/Demo/React_task_coco/coco new/src/component/image/imageBackground.js">
         <metrics statements="9" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
         <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
       </file>
     </package>
     <package name="component.input">
@@ -69,28 +69,26 @@
       </file>
     </package>
     <package name="component.modal">
-      <metrics statements="19" coveredstatements="8" conditionals="6" coveredconditionals="0" methods="7" coveredmethods="1"/>
+      <metrics statements="17" coveredstatements="6" conditionals="6" coveredconditionals="0" methods="7" coveredmethods="1"/>
       <file name="multiSelect.js" path="/Users/infi/Desktop/React-Native/Demo/React_task_coco/coco new/src/component/modal/multiSelect.js">
-        <metrics statements="19" coveredstatements="8" conditionals="6" coveredconditionals="0" methods="7" coveredmethods="1"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="21" count="0" type="stmt"/>
+        <metrics statements="17" coveredstatements="6" conditionals="6" coveredconditionals="0" methods="7" coveredmethods="1"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="63" count="0" type="stmt"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="78" count="0" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
-        <line num="81" count="0" type="stmt"/>
-        <line num="89" count="1" type="stmt"/>
-        <line num="96" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
       </file>
     </package>
     <package name="component.safeAreaView">

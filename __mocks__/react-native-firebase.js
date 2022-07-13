@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 jest.mock("@react-native-firebase/database", () => {
   const set = jest.fn();
 

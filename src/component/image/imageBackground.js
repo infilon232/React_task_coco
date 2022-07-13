@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Animated, View, StyleSheet, Image } from "react-native";
-import c from "../../styles/commonStyle";
 class ImageBackground extends Component {
   thumbnailAnimated = new Animated.Value(0);
   imageAnimated = new Animated.Value(0);
