@@ -1,104 +1,15 @@
 import React, { useState } from "react";
 import { ScrollView, TouchableOpacity, View, StyleSheet } from "react-native";
 import { AppRoot, ImageBackground, Image, Button, Text } from "../../component";
-import { Colors, Dimens, ImageView, Screen } from "../../config/appConstants";
+import {
+  Colors,
+  Dimens,
+  ImageView,
+  Screen,
+  sliderImageList
+} from "../../config/appConstants";
 import commonStyle from "../../styles/commonStyle";
 import c from "../../styles/commonStyle";
-const Home = ({ navigation }) => {
-  const [activeImage, setActiveImage] = useState(0);
-
-  const imageText = (image, text) => {
-    return (
-      <View style={commonStyle.flexRow}>
-        <Image source={image} style={s.img} tintColor={Colors.red} />
-        <Text textStyle={s.txt} lable={text} />
-      </View>
-    );
-  };
-
-  return (
-    <AppRoot hidden={true}>
-      {/* <Header lable={"ddddd"} openAccount={() => { }} openDrawer={() => { }} /> */}
-      <ScrollView style={c.flex1}>
-        <ImageBackground
-          imageStyle={s.bgImg}
-          resizeMode="stretch"
-          style={s.bgImgContainer}
-          source={data.images[activeImage].img}
-        >
-          <View style={{ left: 20 }}>
-            <ScrollView
-              showsHorizontalScrollIndicator={false}
-              horizontal={true}
-              contentContainerStyle={{
-                justifyContent: "flex-end",
-                alignItems: "flex-end"
-              }}
-              style={{
-                alignSelf: "flex-start",
-                width: "95%",
-                height: Screen.height * 0.12,
-              }}
-            >
-              {data.images.map((item, i) => {
-                return (
-                  <React.Fragment key={item.id}>
-                    <TouchableOpacity
-                      activeOpacity={0.8}
-                      style={{
-                        ...s.thumbnails,
-                        borderWidth: activeImage == i ? 5 : 3,
-                        marginLeft: i === 0 ? 0 : 2
-                      }}
-                      onPress={() => setActiveImage(i)}
-                    >
-                      <Image
-                        resizeMode="cover"
-                        source={item.img}
-                        style={{
-                          height:
-                            Screen.height * 0.09 + (activeImage == i ? 0 : 2),
-                          width:
-                            Screen.height * 0.09 + (activeImage == i ? 0 : 2)
-                        }}
-                      />
-                    </TouchableOpacity>
-                  </React.Fragment>
-                );
-              })}
-            </ScrollView>
-          </View>
-        </ImageBackground>
-
-        <View style={s.inner}>
-          <View style={commonStyle.flexRowBetween}>
-            <View>
-              <Text textStyle={s.country} lable={data.country} />
-              <Text textStyle={s.place} lable={data.place} />
-            </View>
-            <Text textStyle={s.price} lable={data.price} />
-          </View>
-
-          <View style={commonStyle.flexRow}>
-            {imageText(ImageView.star, data.rating)}
-            {imageText(ImageView.clock, data.time)}
-            {imageText(ImageView.location, data.length)}
-          </View>
-
-          <Text textStyle={s.description} lable={data.description} />
-        </View>
-        <View style={{height:50}}/>
-      </ScrollView>
-      <Button
-        text="Book Now"
-        containerStyle={s.btn}
-        onPress={() => navigation.goBack()}
-      />
-    </AppRoot>
-  );
-};
-
-export default Home;
 
 const s = StyleSheet.create({
   bgImg: {
@@ -132,10 +43,7 @@ const s = StyleSheet.create({
     fontSize: Dimens.F18,
     marginTop: 16
   },
-  img: {
-    ...commonStyle.img20
-  },
-  inner: {
+  innerStyle: {
     padding: 20
   },
   place: {
@@ -149,6 +57,15 @@ const s = StyleSheet.create({
     fontSize: Dimens.F30,
     fontWeight: "bold"
   },
+  scrollEnd: {
+    alignItems: "flex-end",
+    justifyContent: "flex-end"
+  },
+  scrollStart: {
+    alignSelf: "flex-start",
+    height: Screen.height * 0.12,
+    width: "95%"
+  },
   thumbnails: {
     alignItems: "center",
     borderColor: Colors.white,
@@ -156,40 +73,97 @@ const s = StyleSheet.create({
     justifyContent: "center",
     marginRight: 10,
     overflow: "hidden"
-  },
-  txt: {
-    color: Colors.tabGray,
-    fontSize: Dimens.F18,
-    fontWeight: "bold",
-    marginLeft: 5,
-    marginRight: 20
   }
 });
+const Home = ({ navigation }) => {
+  const [activeImage, setActiveImage] = useState(0);
 
-const data = {
-  country: "Turkey",
-  place: "Cappadocia",
-  rating: "5.0",
-  time: "30 mins",
-  length: "20 km",
-  price: "$50.00",
-  description: `Cappadocia, a semi-arid region in central Turkey, is known for its distinctive “fairy chimneys,” tall, cone-shaped rock formations clustered in Monks Valley, Göreme and elsewhere. Other notables sites include Bronze Age homes carved into valley walls by troglodytes (cave dwellers) and later used as refuges by early Christians.`,
-  images: [
-    {
-      id: 1,
-      img: ImageView.img1
-    },
-    {
-      id: 2,
-      img: ImageView.img2
-    },
-    {
-      id: 2,
-      img: ImageView.img3
-    },
-    {
-      id: 2,
-      img: ImageView.img4
-    }
-  ]
+  const imageText = (image, text) => {
+    return (
+      <View style={commonStyle.flexRow}>
+        <Image
+          source={image}
+          style={commonStyle.img20}
+          tintColor={Colors.red}
+        />
+        <Text textStyle={s.txt} lable={text} />
+      </View>
+    );
+  };
+
+  return (
+    <AppRoot hidden={true}>
+      <ScrollView style={c.flex1}>
+        <ImageBackground
+          imageStyle={s.bgImg}
+          resizeMode="stretch"
+          style={s.bgImgContainer}
+          source={sliderImageList.images[activeImage].img}
+        >
+          <View style={commonStyle.left20}>
+            <ScrollView
+              showsHorizontalScrollIndicator={false}
+              horizontal={true}
+              contentContainerStyle={s.scrollEnd}
+              style={s.scrollStart}
+            >
+              {sliderImageList.images.map((item, i) => {
+                return (
+                  <React.Fragment key={item.id}>
+                    <TouchableOpacity
+                      activeOpacity={0.8}
+                      // eslint-disable-next-line react-native/no-inline-styles
+                      style={{
+                        ...s.thumbnails,
+                        borderWidth: activeImage == i ? 5 : 3,
+                        marginLeft: i === 0 ? 0 : 2
+                      }}
+                      onPress={() => setActiveImage(i)}
+                    >
+                      <Image
+                        resizeMode="cover"
+                        source={item.img}
+                        style={{
+                          height:
+                            Screen.height * 0.09 + (activeImage == i ? 0 : 2),
+                          width:
+                            Screen.height * 0.09 + (activeImage == i ? 0 : 2)
+                        }}
+                      />
+                    </TouchableOpacity>
+                  </React.Fragment>
+                );
+              })}
+            </ScrollView>
+          </View>
+        </ImageBackground>
+
+        <View style={s.innerStyle}>
+          <View style={commonStyle.flexRowBetween}>
+            <View>
+              <Text textStyle={s.country} lable={sliderImageList.country} />
+              <Text textStyle={s.place} lable={sliderImageList.place} />
+            </View>
+            <Text textStyle={s.price} lable={sliderImageList.price} />
+          </View>
+
+          <View style={commonStyle.flexRow}>
+            {imageText(ImageView.star, sliderImageList.rating)}
+            {imageText(ImageView.clock, sliderImageList.time)}
+            {imageText(ImageView.location, sliderImageList.length)}
+          </View>
+
+          <Text textStyle={s.description} lable={sliderImageList.description} />
+        </View>
+        <View style={commonStyle.height50} />
+      </ScrollView>
+      <Button
+        text="Book Now"
+        containerStyle={s.btn}
+        onPress={() => navigation.goBack()}
+      />
+    </AppRoot>
+  );
 };
+
+export default Home;

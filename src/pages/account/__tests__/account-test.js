@@ -10,7 +10,7 @@ import "react-native";
 import { FlatList, Text } from "react-native";
 import { Provider } from "react-redux";
 import renderer from "react-test-renderer";
-import Home from "../..";
+import Account from "../";
 import configureStore from "../../../redux/configureStore";
 jest.mock("@react-navigation/native", () => {
   return {
@@ -19,7 +19,7 @@ jest.mock("@react-navigation/native", () => {
   };
 });
 
-describe("Home", () => {
+describe("Account", () => {
   const fakeNavigation = {
     navigate: jest.fn(),
     goBack: jest.fn()
@@ -37,7 +37,7 @@ describe("Home", () => {
       renderer
         .create(
           <Provider store={store}>
-            <Home navigation={fakeNavigation} route={route} />
+            <Account navigation={fakeNavigation} route={route} />
           </Provider>
         )
         .toJSON();

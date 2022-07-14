@@ -1,27 +1,14 @@
 import { View, TouchableOpacity, Animated, Easing, Image, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
-import { Colors, Fonts } from '../../config/appConstants';
+import { Colors } from '../../config/appConstants';
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: "row",
-        elevation: 2,
-        alignItems: "center",
-    },
+
     bubbleContainer: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: "space-around",
         alignItems: "center",
         backgroundColor: Colors.white
-    },
-    scaler: { flex: 1, justifyContent: "center", alignItems: "center" },
-    semiCircle: {
-        height: 25,
-        width: 40,
-        borderTopRightRadius: 50,
-        borderTopLeftRadius: 50,
-        position: "absolute",
-        zIndex: -1
     },
     single_tab: {
         height: 46,
@@ -31,17 +18,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderRadius: 23
     },
-    tab_name: {
-        fontSize: 12,
-        fontFamily: Fonts.regular,
-        lineHeight: 15
-    },
-    animatedView: {
-        height: 60,
-        width: 60,
-        position: "absolute",
-        borderRadius: 50,
-    }
 })
 class TabBar extends Component {
     constructor(props) {

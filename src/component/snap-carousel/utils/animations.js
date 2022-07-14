@@ -1,17 +1,5 @@
 import { Platform } from 'react-native';
-
 const IS_ANDROID = Platform.OS === 'android';
-
-// Get scroll interpolator's input range from an array of slide indexes
-// Indexes are relative to the current active slide (index 0)
-// For example, using [3, 2, 1, 0, -1] will return:
-// [
-//     (index - 3) * sizeRef, // active + 3
-//     (index - 2) * sizeRef, // active + 2
-//     (index - 1) * sizeRef, // active + 1
-//     index * sizeRef, // active
-//     (index + 1) * sizeRef // active - 1
-// ]
 export function getInputRangeFromIndexes (range, index, carouselProps) {
     const sizeRef = carouselProps.vertical ? carouselProps.itemHeight : carouselProps.itemWidth;
     let inputRange = [];
@@ -22,10 +10,6 @@ export function getInputRangeFromIndexes (range, index, carouselProps) {
 
     return inputRange;
 }
-
-// Default behavior
-// Scale and/or opacity effect
-// Based on props 'inactiveSlideOpacity' and 'inactiveSlideScale'
 export function defaultScrollInterpolator (index, carouselProps) {
     const range = [1, 0, -1];
     const inputRange = getInputRangeFromIndexes(range, index, carouselProps);
@@ -63,9 +47,6 @@ export function defaultAnimatedStyles (index, animatedValue, carouselProps) {
     };
 }
 
-// Shift animation
-// Same as the default one, but the active slide is also shifted up or down
-// Based on prop 'inactiveSlideShift'
 export function shiftAnimatedStyles (index, animatedValue, carouselProps) {
     let animatedOpacity = {};
     let animatedScale = {};
@@ -108,11 +89,6 @@ export function shiftAnimatedStyles (index, animatedValue, carouselProps) {
     };
 }
 
-// Stack animation
-// Imitate a deck/stack of cards (see #195)
-// WARNING: The effect had to be visually inverted on Android because this OS doesn't honor the `zIndex`property
-// This means that the item with the higher zIndex (and therefore the tap receiver) remains the one AFTER the currently active item
-// The `elevation` property compensates for that only visually, which is not good enough
 export function stackScrollInterpolator (index, carouselProps) {
     const range = IS_ANDROID ?
         [1, 0, -1, -2, -3] :
@@ -145,7 +121,6 @@ export function stackAnimatedStyles (index, animatedValue, carouselProps, cardOf
     const opacityOutputRange = carouselProps.inactiveSlideOpacity === 1 ? [1, 1, 1, 0] : [1, 0.75, 0.5, 0];
 
     return IS_ANDROID ? {
-        // elevation: carouselProps.data.length - index, // fix zIndex bug visually, but not from a logic point of view
         opacity: animatedValue.interpolate({
             inputRange: [-3, -2, -1, 0],
             outputRange: opacityOutputRange.reverse(),
@@ -199,11 +174,6 @@ export function stackAnimatedStyles (index, animatedValue, carouselProps, cardOf
     };
 }
 
-// Tinder animation
-// Imitate the popular Tinder layout
-// WARNING: The effect had to be visually inverted on Android because this OS doesn't honor the `zIndex`property
-// This means that the item with the higher zIndex (and therefore the tap receiver) remains the one AFTER the currently active item
-// The `elevation` property compensates for that only visually, which is not good enough
 export function tinderScrollInterpolator (index, carouselProps) {
     const range = IS_ANDROID ?
         [1, 0, -1, -2, -3] :
@@ -236,7 +206,6 @@ export function tinderAnimatedStyles (index, animatedValue, carouselProps, cardO
     };
 
     return IS_ANDROID ? {
-        // elevation: carouselProps.data.length - index, // fix zIndex bug visually, but not from a logic point of view
         opacity: animatedValue.interpolate({
             inputRange: [-3, -2, -1, 0, 1],
             outputRange: [0, peekingCardsOpacity, peekingCardsOpacity, 1, 0],

@@ -15,8 +15,8 @@ const Account = () => {
   const isLoading = useSelector(loading);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUsers({}));
-    dispatch(getCategories({}));
+    dispatch(getUsers());
+    dispatch(getCategories());
   }, []);
 
   return (

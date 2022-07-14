@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { View, Image, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { View, Image, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from '../slider/SliderEntry.style';
-import { Dimens, ImageView } from '../../config/appConstants';
-import ImageBackground from '../image/imageBackground';
-// import { Text } from '../../component';
-import { Colors } from '../../config/appConstants'
+import { ImageView } from '../../config/appConstants';
 import commonStyle from '../../styles/commonStyle';
 export default class SliderEntry extends Component {
 

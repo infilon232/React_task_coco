@@ -29,6 +29,9 @@ const commonStyle = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between"
   },
+  height50: {
+    height: 50
+  },
   img10: {
     height: 10,
     tintColor: Colors.green,
@@ -51,11 +54,12 @@ const commonStyle = StyleSheet.create({
     height: 50,
     width: 50
   },
+
   img64Style: {
     height: Screen.height * 0.09,
     width: Screen.height * 0.09
   },
-
+  left20: { left: 20 },
   separator: {
     backgroundColor: Colors.cardLight,
     height: 1,

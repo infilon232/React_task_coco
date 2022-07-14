@@ -27,11 +27,11 @@ const Home = ({ navigation }) => {
         openAccount={() => {}}
         openDrawer={() => {}}
       />
-      <Text textStyle={commonStyle.text40} lable={"Discover \nA New World"} />
+      <Text textStyle={commonStyle.text40} lable={Strings.discover} />
 
       <Searchbar
         placeholderTextColor={Colors.red}
-        placeholder="Search Places"
+        placeholder={Strings.searchp}
         tintColor={Colors.red}
       />
 
@@ -52,19 +52,6 @@ const Home = ({ navigation }) => {
         autoplayDelay={500}
         autoplayInterval={3000}
       />
-
-      {/* <Pagination
-        dotsLength={slider.length}
-        activeDotIndex={activeSlide}
-        containerStyle={styles.paginationContainer}
-        dotColor={Colors.primary}
-        dotStyle={styles.paginationDot}
-        inactiveDotColor={Colors.white}
-        inactiveDotOpacity={0.4}
-        inactiveDotScale={0.6}
-        // carouselRef={this._slider1Ref}
-        // tappableDots={!!this._slider1Ref}
-      /> */}
     </AppRoot>
   );
 };

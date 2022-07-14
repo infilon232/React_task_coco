@@ -1,9 +1,8 @@
 import React from "react";
 import { AppRoot, Header } from "../../component";
-
 import { Strings } from "../../config/appConstants";
 
-const Home = () => {
+const Cart = () => {
   return (
     <AppRoot>
       <Header
@@ -15,4 +14,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Cart;

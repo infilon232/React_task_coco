@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-color-literals */
 import { StyleSheet, Dimensions, Platform } from "react-native";
 import { Colors, Dimens, Fonts } from "../../config/appConstants";
 import { colors } from "./index.style";
@@ -44,14 +45,14 @@ export default StyleSheet.create({
     backgroundColor: colors.black
   },
   innerView: {
+    alignSelf: "center",
     backgroundColor: "rgba(255,255,255,0.8)",
     borderRadius: 20,
+    bottom: 5,
     margin: 10,
     padding: 10,
-    position:'absolute',
-    bottom:5,
-    width:'90%',
-    alignSelf:'center'
+    position: "absolute",
+    width: "90%"
   },
   place: {
     color: Colors.black,

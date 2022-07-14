@@ -3,7 +3,7 @@ import { AppRoot, Header } from "../../component";
 
 import { Strings } from "../../config/appConstants";
 
-const Home = () => {
+const Menu = () => {
   return (
     <AppRoot>
       <Header
@@ -15,4 +15,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Menu;

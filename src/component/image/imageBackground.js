@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Animated, View, StyleSheet, Image } from "react-native";
+import { Animated, View, StyleSheet } from "react-native";
 class ImageBackground extends Component {
   thumbnailAnimated = new Animated.Value(0);
   imageAnimated = new Animated.Value(0);
@@ -26,16 +26,6 @@ class ImageBackground extends Component {
       thumbnailSource = "",
       ...props
     } = this.props;
-    const skeletonLayout = [
-      {
-        key: 1,
-        ...StyleSheet.absoluteFill,
-        width: style.width,
-        height: style.height,
-        imageStyle,
-      },
-    ];
-
     return (
       <View style={style} ref={this._captureRef}>
           <View

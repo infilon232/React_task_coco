@@ -1,5 +1,3 @@
-// Parallax effect inspired by https://github.com/oblador/react-native-parallax/
-
 import React, { Component } from 'react';
 import { View, Image, Animated, Easing, ActivityIndicator, findNodeHandle } from 'react-native';
 import PropTypes from 'prop-types';

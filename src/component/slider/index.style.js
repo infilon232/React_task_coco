@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-color-literals */
 import { StyleSheet } from "react-native";
 import { Colors } from "../../config/appConstants";
 

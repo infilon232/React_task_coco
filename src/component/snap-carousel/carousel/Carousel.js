@@ -13,16 +13,8 @@ import {
 } from '../utils/animations';
 
 const IS_IOS = Platform.OS === 'ios';
-
-// Native driver for scroll events
-// See: https://facebook.github.io/react-native/blog/2017/02/14/using-native-driver-for-animated.html
 const AnimatedFlatList = FlatList ? Animated.createAnimatedComponent(FlatList) : null;
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
-
-// React Native automatically handles RTL layouts; unfortunately, it's buggy with horizontal ScrollView
-// See https://github.com/facebook/react-native/issues/11960
-// NOTE: the following variable is not declared in the constructor
-// otherwise it is undefined at init, which messes with custom indexes
 const IS_RTL = I18nManager.isRTL;
 
 export default class Carousel extends Component {
@@ -109,15 +101,11 @@ export default class Carousel extends Component {
             hideCarousel: true,
             interpolators: []
         };
-
-        // The following values are not stored in the state because 'setState()' is asynchronous
-        // and this results in an absolutely crappy behavior on Android while swiping (see #156)
         const initialActiveItem = this._getFirstItem(props.firstItem);
         this._activeItem = initialActiveItem;
         this._previousActiveItem = initialActiveItem;
         this._previousFirstItem = initialActiveItem;
         this._previousItemsLength = initialActiveItem;
-
         this._mounted = false;
         this._positions = [];
         this._currentContentOffset = 0; // store ScrollView's scroll position
@@ -145,9 +133,6 @@ export default class Carousel extends Component {
         this._getKeyExtractor = this._getKeyExtractor.bind(this);
 
         this._setScrollHandler(props);
-
-        // This bool aims at fixing an iOS bug due to scrollTo that triggers onMomentumScrollEnd.
-        // onMomentumScrollEnd fires this._snapScroll, thus creating an infinite loop.
         this._ignoreNextMomentum = false;
 
         // Warnings
@@ -184,7 +169,6 @@ export default class Carousel extends Component {
         this._mounted = true;
         this._initPositionsAndInterpolators();
 
-        // Without 'requestAnimationFrame' or a `0` timeout, images will randomly not be rendered on Android...
         requestAnimationFrame(() => {
             if (!this._mounted) {
                 return;
@@ -229,12 +213,10 @@ export default class Carousel extends Component {
         const hasNewItemHeight = itemHeight && itemHeight !== prevProps.itemHeight;
         const hasNewScrollEnabled = scrollEnabled !== prevProps.scrollEnabled;
 
-        // Prevent issues with dynamically removed items
         if (nextActiveItem > itemsLength - 1) {
             nextActiveItem = itemsLength - 1;
         }
 
-        // Handle changing scrollEnabled independent of user -> carousel interaction
         if (hasNewScrollEnabled) {
             this._setScrollEnabled(scrollEnabled);
         }
@@ -246,9 +228,6 @@ export default class Carousel extends Component {
 
             this._initPositionsAndInterpolators(this.props);
 
-            // Handle scroll issue when dynamically removing items (see #133)
-            // This also fixes first item's active state on Android
-            // Because 'initialScrollIndex' apparently doesn't trigger scroll
             if (this._previousItemsLength > itemsLength) {
                 this._hackActiveSlideAnimation(nextActiveItem, null, true);
             }
@@ -292,7 +271,6 @@ export default class Carousel extends Component {
     }
 
     _setScrollHandler(props) {
-      // Native driver for scroll events
       const scrollEventConfig = {
         listener: this._onScroll,
         useNativeDriver: true,
@@ -303,11 +281,9 @@ export default class Carousel extends Component {
         : [{ nativeEvent: { contentOffset: { x: this._scrollPos } } }];
 
       if (props.onScroll && Array.isArray(props.onScroll._argMapping)) {
-        // Because of a react-native issue https://github.com/facebook/react-native/issues/13294
         argMapping.pop();
         const [ argMap ] = props.onScroll._argMapping;
         if (argMap && argMap.nativeEvent && argMap.nativeEvent.contentOffset) {
-          // Shares the same animated value passed in props
           this._scrollPos =
             argMap.nativeEvent.contentOffset.x ||
             argMap.nativeEvent.contentOffset.y ||
@@ -438,7 +414,6 @@ export default class Carousel extends Component {
                 (index - loopClonesPerSide) % dataLength :
                 index - dataLength - loopClonesPerSide;
         } else if (index < loopClonesPerSide) {
-            // TODO: is there a simpler way of determining the interpolated index?
             if (loopClonesPerSide > dataLength) {
                 const baseDataIndexes = [];
                 const dataIndexes = [];
@@ -463,7 +438,6 @@ export default class Carousel extends Component {
         }
     }
 
-    // Used with `snapToItem()` and 'PaginationDot'
     _getPositionIndex (index) {
         const { loop, loopClonesPerSide } = this.props;
         return loop ? index + loopClonesPerSide : index;
@@ -487,8 +461,6 @@ export default class Carousel extends Component {
         )) {
             return this._carouselRef;
         }
-        // https://github.com/facebook/react-native/issues/10635
-        // https://stackoverflow.com/a/48786374/8412141
         return this._carouselRef && this._carouselRef.getNode && this._carouselRef.getNode();
     }
 
@@ -503,8 +475,6 @@ export default class Carousel extends Component {
             return;
         }
 
-        // 'setNativeProps()' is used instead of 'setState()' because the latter
-        // really takes a toll on Android behavior when momentum is disabled
         wrappedRef.setNativeProps({ scrollEnabled });
         this._scrollEnabled = scrollEnabled;
     }
@@ -840,7 +810,6 @@ export default class Carousel extends Component {
     _onTouchStart () {
         const { onTouchStart } = this.props
 
-        // `onTouchStart` is fired even when `scrollEnabled` is set to `false`
         if (this._getScrollEnabled() !== false && this._autoplaying) {
             this.pauseAutoPlay();
         }
@@ -854,7 +823,6 @@ export default class Carousel extends Component {
         const { onTouchEnd } = this.props
 
         if (this._getScrollEnabled() !== false && this._autoplay && !this._autoplaying) {
-            // This event is buggy on Android, so a fallback is provided in _onScrollEnd()
             this.startAutoplay();
         }
 
@@ -911,7 +879,6 @@ export default class Carousel extends Component {
         const { autoplayDelay, enableSnap } = this.props;
 
         if (this._ignoreNextMomentum) {
-            // iOS fix
             this._ignoreNextMomentum = false;
             return;
         }
@@ -927,8 +894,6 @@ export default class Carousel extends Component {
             this._snapScroll(this._scrollEndOffset - this._scrollStartOffset);
         }
 
-        // The touchEnd event is buggy on Android, so this will serve as a fallback whenever needed
-        // https://github.com/facebook/react-native/issues/9439
         if (this._autoplay && !this._autoplaying) {
             clearTimeout(this._enableAutoplayTimeout);
             this._enableAutoplayTimeout = setTimeout(() => {
@@ -936,10 +901,6 @@ export default class Carousel extends Component {
             }, autoplayDelay + 50);
         }
     }
-
-    // Due to a bug, this event is only fired on iOS
-    // https://github.com/facebook/react-native/issues/6791
-    // it's fine since we're only fixing an iOS bug in it, so ...
     _onTouchRelease (event) {
         const { enableMomentum } = this.props;
 
@@ -953,8 +914,6 @@ export default class Carousel extends Component {
 
     _onLayout (event) {
         const { onLayout } = this.props;
-
-        // Prevent unneeded actions during the first 'onLayout' (triggered on init)
         if (this._onLayoutInitDone) {
             this._initPositionsAndInterpolators();
             this._snapToItem(this._activeItem, false, false, false, false);
@@ -969,18 +928,13 @@ export default class Carousel extends Component {
 
     _snapScroll (delta) {
         const { swipeThreshold } = this.props;
-
-        // When using momentum and releasing the touch with
-        // no velocity, scrollEndActive will be undefined (iOS)
         if (!this._scrollEndActive && this._scrollEndActive !== 0 && IS_IOS) {
             this._scrollEndActive = this._scrollStartActive;
         }
 
         if (this._scrollStartActive !== this._scrollEndActive) {
-            // Snap to the new active item
             this._snapToItem(this._scrollEndActive);
         } else {
-            // Snap depending on delta
             if (delta > 0) {
                 if (delta > swipeThreshold) {
                     this._snapToItem(this._scrollStartActive + 1);
@@ -994,7 +948,6 @@ export default class Carousel extends Component {
                     this._snapToItem(this._scrollEndActive);
                 }
             } else {
-                // Snap to current
                 this._snapToItem(this._scrollEndActive);
             }
         }
@@ -1018,7 +971,6 @@ export default class Carousel extends Component {
         if (index !== this._previousActiveItem) {
             this._previousActiveItem = index;
 
-            // Placed here to allow overscrolling for edges items
             if (lockScroll && this._canLockScroll()) {
                 this._lockScroll();
             }
@@ -1047,17 +999,9 @@ export default class Carousel extends Component {
         this._scrollEndOffset = this._currentContentOffset;
 
         if (enableMomentum) {
-            // iOS fix, check the note in the constructor
             if (!initial) {
                 this._ignoreNextMomentum = true;
             }
-
-            // When momentum is enabled and the user is overscrolling or swiping very quickly,
-            // 'onScroll' is not going to be triggered for edge items. Then callback won't be
-            // fired and loop won't work since the scrollview is not going to be repositioned.
-            // As a workaround, '_onScroll()' will be called manually for these items if a given
-            // condition hasn't been met after a small delay.
-            // WARNING: this is ok only when relying on 'momentumScrollEnd', not with 'scrollEndDrag'
             if (index === 0 || index === itemsLength - 1) {
                 clearTimeout(this._edgeItemTimeout);
                 this._edgeItemTimeout = setTimeout(() => {
@@ -1162,9 +1106,7 @@ export default class Carousel extends Component {
         this._snapToItem(newIndex, animated, fireCallback);
     }
 
-    // https://github.com/facebook/react-native/issues/1831#issuecomment-231069668
     triggerRenderingHack (offset) {
-        // Avoid messing with user scroll
         if (Date.now() - this._lastScrollDate < 500) {
             return;
         }
@@ -1263,7 +1205,6 @@ export default class Carousel extends Component {
             initialNumToRender: initialNumToRender,
             maxToRenderPerBatch: maxToRenderPerBatch,
             windowSize: windowSize
-            // updateCellsBatchingPeriod
         } : {};
 
         return {
@@ -1277,7 +1218,6 @@ export default class Carousel extends Component {
             scrollsToTop: false,
             removeClippedSubviews: !this._needsScrollView(),
             inverted: this._needsRTLAdaptations(),
-            // renderToHardwareTextureAndroid: true,
             ...specificProps
         };
     }
@@ -1299,8 +1239,6 @@ export default class Carousel extends Component {
             hideCarousel ? { opacity: 0 } : {},
             vertical ?
                 { height: sliderHeight, flexDirection: 'column' } :
-                // LTR hack; see https://github.com/facebook/react-native/issues/11960
-                // and https://github.com/facebook/react-native/issues/13100#issuecomment-328986423
                 { width: sliderWidth, flexDirection: this._needsRTLAdaptations() ? 'row-reverse' : 'row' }
         ];
         const contentContainerStyle = [
@@ -1315,7 +1253,6 @@ export default class Carousel extends Component {
         ];
 
         const specificProps = !this._needsScrollView() ? {
-            // extraData: this.state,
             renderItem: this._renderItem,
             numColumns: 1,
             keyExtractor: keyExtractor || this._getKeyExtractor

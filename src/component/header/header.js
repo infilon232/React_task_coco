@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Platform } from "react-native";
 import c from "../../styles/commonStyle";
-import { Colors, Dimens, ImageView, Screen } from "../../config/appConstants";
+import { Colors, Dimens, ImageView } from "../../config/appConstants";
 import { Text } from "../../component";
 import ImageButton from "../image/imageButton";
 const s = StyleSheet.create({

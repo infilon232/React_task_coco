@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity, Modal, FlatList, View, Image } from "react-native";
+import { TouchableOpacity, Modal, FlatList, View, Image } from "react-native";
 import PropTypes from "prop-types";
 import { Text, Button } from "../../component";
-import { Colors, Images, ImageView, Screen } from "../../config/appConstants";
+import { Colors, ImageView, Screen, Strings } from "../../config/appConstants";
 import c from "../../styles/commonStyle";
 class MultiSelect extends Component {
 
@@ -73,7 +73,7 @@ class MultiSelect extends Component {
               keyExtractor={item => item.id}
               ItemSeparatorComponent={() => <View style={c.separator} />}
             />
-            <Button text="Apply" containerStyle={{ margin: 10 }} onPress={() => onApply(selected)} />
+            <Button text={Strings.apply} containerStyle={{ margin: 10 }} onPress={() => onApply(selected)} />
           </View>
         </View>
       </Modal>
