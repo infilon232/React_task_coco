@@ -1,9 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Cart hould render correctly 1`] = `
-
-`;
-
 exports[`Cart should render correctly 1`] = `
 Array [
   <RCTSafeAreaView

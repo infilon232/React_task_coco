@@ -1,9 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Menu hould render correctly 1`] = `
-
-`;
-
 exports[`Menu should render correctly 1`] = `
 Array [
   <RCTSafeAreaView
