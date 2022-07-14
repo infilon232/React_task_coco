@@ -24,7 +24,8 @@ const Colors = {
   pink: "#ff4081",
   white: "#FFFFFF",
   black: "#000",
-  red: "#dc3545",
+  red: "#ff450d",
+  orange: "#d56f51",
   errorColor: "#B52222",
   yellow: "rgba(239, 192, 48, 0.8)",
   btnColor: "#EFC030",
@@ -65,24 +66,77 @@ const Screen = {
   OrientationListener: removeOrientationListener
 };
 
-const Images = {
+const Fonts = {};
+
+const ImageView = {
   close: require("../assets/close.png"),
   check: require("../assets/check.png"),
   filter: require("../assets/filter.png"),
-  search: require("../assets/search.png")
+  search: require("../assets/search.png"),
+  menu: require("../assets/menu.png"),
+
+  star: require("../assets/star.png"),
+  location: require("../assets/location.png"),
+  bookmark: require("../assets/bookmark.png"),
+  next: require("../assets/next.png"),
+  back: require("../assets/back.png"),
+  cart: require("../assets/cart.png"),
+  clock: require("../assets/clock.png"),
+
+
+  tab1: require("../assets/tab1.png"),
+  tab2: require("../assets/tab2.png"),
+  tab3: require("../assets/tab3.png"),
+  tab4: require("../assets/tab4.png"),
+
+  img1: require("../assets/img1.jpg"),
+  img2: require("../assets/img2.jpg"),
+  img3: require("../assets/img3.jpeg"),
+  img4: require("../assets/img4.png"),
+
+  blur: require("../assets/blur.png"),
+  user: require("../assets/user.png")
+
 };
 
-const Fonts = {};
-
-const ImageView = {};
-
 const Strings = {
-  app_Name: "COCO",
+  app_Name: "TOURX",
   loading: "Loading...",
   home: "HOME"
 };
 
 const emptyArray = [{ id: "1" }, { id: "2" }, { id: "3" }, { id: "4" }];
+
+const slider = [
+  {
+    country: 'Turky',
+    place:'Cappadocia',
+    price:'$50.00',
+    title: "Find out how you spend your money and get better control",
+    image: ImageView.img1
+  },
+  {
+    country: 'Turky',
+    place:'Cappadocia',
+    price:'$50.00',
+    title: "Bring your friends to Zype and win lifetime rewards. Here’s how...",
+    image: ImageView.img2
+  },
+  {
+    country:'Turky',
+    place:'Cappadocia',
+    price:'$50.00',
+    title: "Find out how you spend your money and get better control",
+    image: ImageView.img3
+  },
+  {
+    country:'Turky',
+    place:'Cappadocia',
+    price:'$50.00',
+    title: "Find out how you spend your money and get better control",
+    image: ImageView.img4
+  }
+];
 
 export {
   Constants,
@@ -92,6 +146,6 @@ export {
   Fonts,
   ImageView,
   Strings,
-  Images,
-  emptyArray
+  emptyArray,
+  slider
 };

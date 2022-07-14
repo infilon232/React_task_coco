@@ -1,17 +1,16 @@
 import React from "react";
-import { LogBox, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import {
   NavigationContainer,
   createNavigationContainerRef
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Home } from "./route";
+import { Details, Account, Cart, Menu } from "./route";
+import { BottomMenu } from "../navigation/bottomMenu/bottomMenu";
 import { Colors, Constants } from "../config/appConstants";
 import { SafeAreaView } from "react-native-safe-area-context";
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
-LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
-LogBox.ignoreLogs(["Remote debugger"]);
 const s = StyleSheet.create({
   rootSaf: { backgroundColor: Colors.black, flex: 1 }
 });
@@ -28,7 +27,11 @@ const App = () => {
           }}
           initialRouteName={"Home"}
         >
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Home" component={BottomMenu} />
+          <Stack.Screen name="Details" component={Details} />
+          <Stack.Screen name="Cart" component={Cart} />
+          <Stack.Screen name="Menu" component={Menu} />
+          <Stack.Screen name="Account" component={Account} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

@@ -19,7 +19,7 @@ const pageStyle = StyleSheet.create({
   },
   textBtn: {
     color: Colors.white,
-    fontSize: Dimens.F10,
+    fontSize: Dimens.F12,
     letterSpacing: 2
   }
 });
@@ -52,7 +52,6 @@ class Button extends PureComponent {
           <ActivityIndicator size="small" color={Colors.white} />
         ) : (
           <Text
-            layoutTop={8}
             isLoading={loading}
             lable={!loading && text}
             textStyle={[

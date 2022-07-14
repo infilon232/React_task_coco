@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
 const AppSafeAreaView = ({
   children,
   theme,
+  hidden,
   needsSafeArea = true,
   safeAreaTheme = "light"
 }) => {
@@ -34,9 +35,9 @@ const AppSafeAreaView = ({
     return (
       <View style={styles.container}>
         <StatusBar
-          barStyle={theme != "light" ? "light-content" : "dark-content"}
-          hidden={false}
-          backgroundColor={theme != "light" ? "transparent" : Colors.white}
+          barStyle={theme == "light" ? "light-content" : "dark-content"}
+          hidden={hidden ? hidden : false}
+          backgroundColor={theme == "light" ? "transparent" : Colors.white}
         />
         {children}
       </View>

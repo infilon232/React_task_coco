@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, Modal, FlatList, View, Image } from "react-native";
 import PropTypes from "prop-types";
 import { Text, Button } from "../../component";
-import { Colors, Images, Screen } from "../../config/appConstants";
+import { Colors, Images, ImageView, Screen } from "../../config/appConstants";
 import c from "../../styles/commonStyle";
 class MultiSelect extends Component {
 
@@ -47,7 +47,7 @@ class MultiSelect extends Component {
             >
               <Image
                 style={{ ...c.img10, tintColor: Colors.black }}
-                source={Images.close}
+                source={ImageView.close}
               />
             </TouchableOpacity>
             <FlatList
@@ -65,7 +65,7 @@ class MultiSelect extends Component {
                     selected.includes(item) ?
                       <Image
                         style={{ ...c.img10, tintColor: Colors.green }}
-                        source={Images.check}
+                        source={ImageView.check}
                       /> : null
                   }
                 </TouchableOpacity>

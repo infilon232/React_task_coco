@@ -6,38 +6,37 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
-import { Colors, Fonts, Images } from "../../config/appConstants";
+import { Colors, Fonts, Images, ImageView } from "../../config/appConstants";
 import c from "../../styles/commonStyle";
 
 const pageStyle = StyleSheet.create({
   container: {
     ...c.flexRow,
     backgroundColor: Colors.searchbarBg,
-    borderRadius: 5,
-    flex: 0.94,
-    height: 40,
+    borderRadius: 16,
+    flex: 0.95,
+    height: 50,
     margin: 16,
     paddingLeft: 12
   },
   input: {
     color: Colors.black,
     fontFamily: Fonts.OpenSemiBold,
-    height: 40,
-
-    paddingLeft: 12
+    height: 50,
   },
   root: {
     ...c.flexRowBetween,
     alignSelf: "flex-start"
   }
 });
-const Searchbar = ({ props, onPress }) => {
+const Searchbar = (props) => {
+  const { onPress, tintColor } = props;
   return (
     <View style={pageStyle.root}>
       <View style={pageStyle.container}>
         <Image
-          style={{ ...c.img20, tintColor: Colors.black }}
-          source={Images.search}
+          style={{ ...c.img20, tintColor: tintColor ? tintColor : Colors.black }}
+          source={ImageView.search}
         />
         <TextInput
           style={pageStyle.input}
@@ -45,8 +44,8 @@ const Searchbar = ({ props, onPress }) => {
           {...props}
         />
       </View>
-      <TouchableOpacity style={c.box40} onPress={onPress}>
-        <Image style={c.img20} source={Images.filter} />
+      <TouchableOpacity style={[c.box40, { backgroundColor: tintColor ? tintColor : Colors.black }]} onPress={onPress}>
+        <Image style={c.img20} source={ImageView.filter} />
       </TouchableOpacity>
     </View>
   );
